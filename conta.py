@@ -9,7 +9,9 @@ EXTRA:
 Crie um arquivo data.py quecontencha a class Data.
 Esta classe deverá armazenar uma data que contenha, dia, hora, minuto e segundo. 
 Modelo uma forma para que cada operação de saque e deposito esteja associado a uma data.'''
+import random
 from socket import NI_NUMERICHOST
+from historico import Historico
 
 
 class Conta ():
@@ -31,6 +33,17 @@ class Conta ():
         self.titular = titular
         self.saldo = saldo
         self.limite = limite
+
+    def criarConta(self):
+        self.titular = input('Nome do titular: ')
+        self.saldo = 0
+        self.limite = input(int('Informe o valor de limite que deseja: '))
+        self.numero = random.randint(1000, 9999)
+
+        dado_conta = [self.numero, self.titular, self.saldo, self.limite]
+        novo_registro = Historico.adicionar(dado_conta)
+
+        print(novo_registro)
 
     def deposita(self):
         '''Para depositar dinheiro na conta. Esse método deve receber uma referência do próprio objeto e o valor a ser adicionado ao saldo da conta'''
