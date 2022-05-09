@@ -45,14 +45,14 @@ class Conta ():
 
         print(novo_registro)
 
-    def deposita(self):
-        '''Para depositar dinheiro na conta. Esse método deve receber uma referência do próprio objeto e o valor a ser adicionado ao saldo da conta'''
-        pass
-
     def extrato(self):
         '''Extrato (método da classe Histórico)
     Que recebe como argumento uma referência do próprio objeto e imprime o histórico de operações realizados na conta: saques e depósitos.
     '''
+        Historico.mostrar()
+
+    def deposita(self):
+        '''Para depositar dinheiro na conta. Esse método deve receber uma referência do próprio objeto e o valor a ser adicionado ao saldo da conta'''
         pass
 
     def saca(self):

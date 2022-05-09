@@ -9,7 +9,7 @@ class Historico ():
         self.historico = []
 
     def mostrar(self):
-        pass
+        print(self.historico)
 
     def adicionar(self, dado_conta):
         data = DataHora()
