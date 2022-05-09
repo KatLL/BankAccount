@@ -49,15 +49,31 @@ class Conta ():
         '''Extrato (método da classe Histórico)
     Que recebe como argumento uma referência do próprio objeto e imprime o histórico de operações realizados na conta: saques e depósitos.
     '''
-        Historico.mostrar()
+        print(Historico.mostrar())
 
-    def deposita(self):
+    def deposita(self, valor):
         '''Para depositar dinheiro na conta. Esse método deve receber uma referência do próprio objeto e o valor a ser adicionado ao saldo da conta'''
-        pass
+        self.numero = self.numero
+        self.titular = self.titular
+        self.limite = self.limite
+        self.saldo = self.saldo + valor
 
-    def saca(self):
+        dado_conta = [self.numero, self.titular, self.saldo, self.limite]
+        novo_registro = Historico.adicionar(dado_conta)
+
+        print(novo_registro)
+
+    def saca(self, valor):
         '''Que realiza retiradas de dinheiro de uma conta com e retornar um valor que representa se a operação foi ou não bem-sucedida. Lembre-se que não é permitido sacar um valor maior do que o saldo.'''
-        pass
+        self.numero = self.numero
+        self.titular = self.titular
+        self.limite = self.limite
+        self.saldo = self.saldo - valor
+
+        dado_conta = [self.numero, self.titular, self.saldo, self.limite]
+        novo_registro = Historico.adicionar(dado_conta)
+
+        print(novo_registro)
 
     def transferePara(self):
         '''Que recebe como argumento uma referência do próprio objeto, uma Conta destino e o valor a ser transferido. Esse método deve sacar o valor do próprio objeto e depositar na conta destino.'''

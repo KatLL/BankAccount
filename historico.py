@@ -1,4 +1,4 @@
-from BankAccount.dataHora import DataHora
+from dataHora import DataHora
 #from conta import Conta
 
 
@@ -9,7 +9,7 @@ class Historico ():
         self.historico = []
 
     def mostrar(self):
-        print(self.historico)
+        self.historico
 
     def adicionar(self, dado_conta):
         data = DataHora()
