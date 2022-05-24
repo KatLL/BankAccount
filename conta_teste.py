@@ -8,19 +8,20 @@ Imprima o extrato da conta.'''
 sair = False
 while not sair:
     opcao = input(
-        ('''---- ESCOLHA UMA OPÇÃO: ----
-        [ 1 ] - Criar conta
-        [ 2 ] - Depositar
-        [ 3 ] - Sacar
-        [ 4 ] - Transferir
-        [ 5 ] - Ver Extrato
-        [S/s] - Sair
+        ('''
+---- ESCOLHA UMA OPÇÃO: ----
+    [ 1 ] - Criar conta
+    [ 2 ] - Depositar
+    [ 3 ] - Sacar
+    [ 4 ] - Transferir
+    [ 5 ] - Ver Extrato
+    [S/s] - Sair
         
 Qual operação deseja realizar? '''))
 
     if opcao == '1':  # Criar conta
-        titular = str(input('Nome do titular: ')).upper().strip()
-        limite = float(input('Informe o valor de limite que deseja: '))
+        titular = str(input('\nNome do titular: ')).upper().strip()
+        limite = float(input('\nInforme o valor de limite que deseja: '))
         numero = randint(1000, 9999)
         saldo = 0.0
         transacao = 'Conta Criada com SUCESSO!'
@@ -64,6 +65,6 @@ Qual operação deseja realizar? '''))
 
     elif opcao in 'Ss':
         sair = True
-        print('Obrigada, {}! E volte sempre! \n\n'.format(nova_conta.titular))
+        print('Obrigada, {}! Volte sempre! \n\n'.format(nova_conta.titular))
     else:
         print('Opção inválida.')

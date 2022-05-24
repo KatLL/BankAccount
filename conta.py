@@ -37,7 +37,8 @@ class Conta ():
         self.hist = Historico()
 
     def __str__(self):
-        saida = "Número: " + str(self.numero) + "\n"
+        saida = '\n' + ' = '*15 + "\n"
+        saida += "Número: " + str(self.numero) + "\n"
         saida += "Titular: " + str(self.titular) + "\n"
         saida += "Saldo: R$ " + str('{:.2f}'.format(self.saldo)) + "\n"
         saida += "Limite: R$ " + str('{:.2f}'.format(self.limite)) + "\n"
@@ -48,6 +49,16 @@ class Conta ():
         '''Extrato (método da classe Histórico)
     Que recebe como argumento uma referência do próprio objeto e imprime o histórico de operações realizados na conta: saques e depósitos.
     '''
+        self.numero = self.numero
+        self.titular = self.titular
+        self.limite = self.limite
+        self.saldo = self.saldo
+        self.transacao = 'Gerar extrato.'
+
+        dado_conta = [self.numero, self.titular,
+                      self.saldo, self.limite, self.transacao]
+        self.hist.adicionar(dado_conta)
+
         ext = self.hist.mostrar()
         print(ext)
 
