@@ -9,7 +9,7 @@ EXTRA:
 Crie um arquivo data.py quecontencha a class Data.
 Esta classe deverá armazenar uma data que contenha, dia, hora, minuto e segundo. 
 Modelo uma forma para que cada operação de saque e deposito esteja associado a uma data.'''
-import random
+from random import randint
 from socket import NI_NUMERICHOST
 from historico import Historico
 
@@ -28,28 +28,26 @@ class Conta ():
   Saca
   TransferePara'''
 
-    def __init__(self, numero, titular, saldo, limite):
+    def __init__ (self, numero, titular, saldo, limite):
         self.numero = numero
         self.titular = titular
         self.saldo = saldo
         self.limite = limite
+        self.hist= Historico()
 
-    def criarConta(self):
-        self.titular = input('Nome do titular: ')
-        self.saldo = 0
-        self.limite = input(int('Informe o valor de limite que deseja: '))
-        self.numero = random.randint(1000, 9999)
 
-        dado_conta = [self.numero, self.titular, self.saldo, self.limite]
-        novo_registro = Historico.adicionar(dado_conta)
+    def __str__(self):
+        saida  = "Número:" + str(self.numero) + "\n"
+        saida += "Saldo" + str(self.saldo) + "\n"
+        return saida
 
-        print(novo_registro)
+
 
     def extrato(self):
         '''Extrato (método da classe Histórico)
     Que recebe como argumento uma referência do próprio objeto e imprime o histórico de operações realizados na conta: saques e depósitos.
     '''
-        print(Historico.mostrar())
+        print(self.hist.mostrar())
 
     def deposita(self, valor):
         '''Para depositar dinheiro na conta. Esse método deve receber uma referência do próprio objeto e o valor a ser adicionado ao saldo da conta'''
@@ -59,9 +57,8 @@ class Conta ():
         self.saldo = self.saldo + valor
 
         dado_conta = [self.numero, self.titular, self.saldo, self.limite]
-        novo_registro = Historico.adicionar(dado_conta)
+        self.hist.adicionar(dado_conta)
 
-        print(novo_registro)
 
     def saca(self, valor):
         '''Que realiza retiradas de dinheiro de uma conta com e retornar um valor que representa se a operação foi ou não bem-sucedida. Lembre-se que não é permitido sacar um valor maior do que o saldo.'''
@@ -71,10 +68,9 @@ class Conta ():
         self.saldo = self.saldo - valor
 
         dado_conta = [self.numero, self.titular, self.saldo, self.limite]
-        novo_registro = Historico.adicionar(dado_conta)
+        self.hist.adicionar(dado_conta)
 
-        print(novo_registro)
-
+        
     def transferePara(self):
         '''Que recebe como argumento uma referência do próprio objeto, uma Conta destino e o valor a ser transferido. Esse método deve sacar o valor do próprio objeto e depositar na conta destino.'''
         pass

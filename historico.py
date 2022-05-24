@@ -9,11 +9,11 @@ class Historico ():
         self.historico = []
 
     def mostrar(self):
-        self.historico
+        return self.historico
 
     def adicionar(self, dado_conta):
         data = DataHora()
 
         registro = [dado_conta, data]
 
-        self.histortico.append(registro)
+        self.historico.append(registro)
