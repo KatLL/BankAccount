@@ -1,5 +1,4 @@
 from dataHora import DataHora
-#from conta import Conta
 
 
 class Historico ():

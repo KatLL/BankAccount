@@ -28,26 +28,28 @@ class Conta ():
   Saca
   TransferePara'''
 
-    def __init__ (self, numero, titular, saldo, limite):
+    def __init__(self, numero, titular, saldo, limite, transacao):
         self.numero = numero
         self.titular = titular
         self.saldo = saldo
         self.limite = limite
-        self.hist= Historico()
-
+        self.transacao = transacao
+        self.hist = Historico()
 
     def __str__(self):
-        saida  = "Número:" + str(self.numero) + "\n"
-        saida += "Saldo" + str(self.saldo) + "\n"
+        saida = "Número: " + str(self.numero) + "\n"
+        saida += "Titular: " + str(self.titular) + "\n"
+        saida += "Saldo: R$ " + str('{:.2f}'.format(self.saldo)) + "\n"
+        saida += "Limite: R$ " + str('{:.2f}'.format(self.limite)) + "\n"
+        saida += 'Transação: ' + str(self.transacao) + "\n"
         return saida
-
-
 
     def extrato(self):
         '''Extrato (método da classe Histórico)
     Que recebe como argumento uma referência do próprio objeto e imprime o histórico de operações realizados na conta: saques e depósitos.
     '''
-        print(self.hist.mostrar())
+        ext = self.hist.mostrar()
+        print(ext)
 
     def deposita(self, valor):
         '''Para depositar dinheiro na conta. Esse método deve receber uma referência do próprio objeto e o valor a ser adicionado ao saldo da conta'''
@@ -55,10 +57,11 @@ class Conta ():
         self.titular = self.titular
         self.limite = self.limite
         self.saldo = self.saldo + valor
+        self.transacao = 'Depósito de R$ {:.2f}'.format(valor)
 
-        dado_conta = [self.numero, self.titular, self.saldo, self.limite]
+        dado_conta = [self.numero, self.titular,
+                      self.saldo, self.limite, self.transacao]
         self.hist.adicionar(dado_conta)
-
 
     def saca(self, valor):
         '''Que realiza retiradas de dinheiro de uma conta com e retornar um valor que representa se a operação foi ou não bem-sucedida. Lembre-se que não é permitido sacar um valor maior do que o saldo.'''
@@ -66,11 +69,31 @@ class Conta ():
         self.titular = self.titular
         self.limite = self.limite
         self.saldo = self.saldo - valor
+        self.transacao = 'Saque de R$ {:.2f}'.format(valor)
 
-        dado_conta = [self.numero, self.titular, self.saldo, self.limite]
+        dado_conta = [self.numero, self.titular,
+                      self.saldo, self.limite, self.transacao]
         self.hist.adicionar(dado_conta)
 
-        
-    def transferePara(self):
+    def transferePara(self, valor, numConta2):
         '''Que recebe como argumento uma referência do próprio objeto, uma Conta destino e o valor a ser transferido. Esse método deve sacar o valor do próprio objeto e depositar na conta destino.'''
-        pass
+        self.numero = self.numero
+        self.titular = self.titular
+        self.limite = self.limite
+        self.saldo = self.saldo - valor
+        self.transacao = 'Transferência de R$ {:.2f} para a conta {}'.format(
+            valor, numConta2)
+
+        dado_conta = [self.numero, self.titular,
+                      self.saldo, self.limite, self.transacao]
+        self.hist.adicionar(dado_conta)
+
+        titular2 = 'Titular Dois'
+        limite2 = 5000.00
+        numero2 = numConta2
+        saldo2 = 0 + valor
+        transacao2 = 'Valor recebido de R$ {:.2f} da conta {}'.format(
+            valor, self.numero)
+        #conta2 = Conta(numero2, titular2, saldo2, limite2, transacao2)
+        print('Dado da conta 2:\n' + str(numero2) + ' ' + str(titular2) +
+              ' ' + str(saldo2) + ' ' + str(limite2) + ' ' + str(transacao2) + '\n')
